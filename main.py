@@ -172,13 +172,15 @@ fig1.suptitle('time development - wt0')
 wdth=np.amax(pt)
 wstep=int(wdth/10)
 
-plotax(ax1,wdth,wstep)
-plotax(ax2,wdth,wstep)
-plotax(ax3,wdth,wstep)
-plotax(ax4,wdth,wstep)
+ps.plotax(ax1,wdth,wstep)
+ps.plotax(ax2,wdth,wstep)
+ps.plotax(ax3,wdth,wstep)
+ps.plotax(ax4,wdth,wstep)
 
 fig1.tight_layout()
 plt.show()
+ps.save(fig1)
+plt.clf()
 
 ######FIGURE##########################################################################
 fig2, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2)
@@ -221,16 +223,13 @@ fig1.suptitle('time development - activation')
 wdth=np.amax(pte)
 wstep=int(wdth/10)
 
-plotax(ax5,wdth,wstep)
-plotax(ax6,wdth,wstep)
-plotax(ax7,wdth,wstep)
-plotax(ax8,wdth,wstep)
+ps.plotax(ax5,wdth,wstep)
+ps.plotax(ax6,wdth,wstep)
+ps.plotax(ax7,wdth,wstep)
+ps.plotax(ax8,wdth,wstep)
 
 fig2.tight_layout()
 plt.show()
-
-#save=str(input('save as: '))
-#if save not in ('0', 'NO', 'no', 'No', 'nein', 'NEIN', 'Nein','n', 'N', '', ' ','q', 'Q','quit', 'Quit'):
-#	fig.savefig(save, dpi=500)#fullscreen
-#	s=save+'small'
-#	fig.savefig(s, dpi=150)
+ps.save(fig2)
+plt.clf()
+plt.close()
