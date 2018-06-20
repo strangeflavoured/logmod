@@ -54,3 +54,10 @@ def fuse(a,b,n):
 		eSUM.append(a)
 	eSUM=np.stack(eSUM)
 	return eSUM
+
+def save():
+	save=str(input('save as: '))
+	if save not in ('0', 'NO', 'no', 'No', 'nein', 'NEIN', 'Nein','n', 'N', '', ' ','q', 'Q','quit', 'Quit'):
+		fig.savefig(save, dpi=500)#fullscreen
+		s=save+'small'
+		fig.savefig(s, dpi=150)
