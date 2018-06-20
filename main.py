@@ -85,7 +85,6 @@ while jj<n:
 	states=[incd]
 	
 	ii=0
-	BREAK=False
 	while ii<ite:
 
 		state=states[-1]
