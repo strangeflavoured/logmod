@@ -13,14 +13,5 @@ from logfkt import ID, NOT, AND, OR, XOR
 d=10
 
 def im(a):
-	im=[ID(a[0]),
-	NOT(a[3]),
-	AND(a[1],NOT(a[4])),
-	AND(OR(a[5],a[3]),NOT(a[6])),
-	AND(a[3],NOT(a[2])),
-	ID(a[2]),
-	AND(a[0],NOT(a[8])),
-	ID(a[2]),
-	ID(a[7]),
-	ID(a[2])]
+	im=[ID(a[0]),NOT(a[3]),	AND(a[1],NOT(a[4])),AND(OR(a[5],a[3]),NOT(a[6])),AND(a[3],NOT(a[2])),ID(a[2]),AND(a[0],NOT(a[8])),ID(a[2]),ID(a[7]),ID(a[2])]
 	return im
