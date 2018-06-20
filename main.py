@@ -92,24 +92,8 @@ while jj<n:
 		if ii>0:
 			lstate=states[-2]
 		
-		#print(state[0],state[1],state[2],state[3],state[4],state[5],state[6],state[7],state[8],state[9])
-###########OUT##########################################################################################
-##1 0 0 1 1 0 0 0 0 0
-##Traceback (most recent call last):
-##  File "main.py", line 96, in <module>
-##    print(state[0],state[1],state[2],state[3],state[4],state[5],state[6],state[7],state[8],state[9])
-##TypeError: 'int' object is not subscriptable
-#########################################################################################################
 		image=mod.im(state)		
-###########OUT##########################################################################################
-##Traceback (most recent call last):
-##  File "main.py", line 104, in <module>
-##    image=mod.im(state)		
-##  File "modell.py", line 16, in im
-##    im=[ID(a[0]),NOT(a[3]),	AND(a[1],NOT(a[4])),AND(OR(a[5],a[3]),NOT(a[6])),AND(a[3],NOT(a[2])),ID(a[2]),AND(a[0],NOT(a[8])),ID(a[2]),ID(a[7]),ID(a[2])]
-##TypeError: 'int' object is not subscriptable
-##########################################################################################################		
-
+		
 		sym.cb(image,state,lstate)
 		if BREAK==True:
 			break
