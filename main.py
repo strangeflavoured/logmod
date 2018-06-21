@@ -8,61 +8,67 @@ import process as prc
 from event import e1,e2
 from plot1 import figa,figb
 
+#######INITIATION#######################################################################################
 d=mod.d
 total='True'#input('simulate all? ')
 event=1#int(input('how many events? '))
-#INITIAL CONDITIONS, SIMULATION SETTINGS#################################################################
 incd=init.init('all0','atest')#(input('init. cond.: '),input('sim. cond.: '))
 
 if total=='True':
 	total=True
 	INCD=incd[0]
-	n=INCD.shape[0]*incd[1][0]
+	n=INCD.shape[0]
+	N=10#incd[1][0]
 	event=0
 else:		
 	n=incd[1][0]
-	
-sample='n=%s' %n
+	N=1
+probe=n*N	
+sample='n=%s' %probe
 it=incd[1][1]#iterations pre-event
 ite=incd[1][2] #iterations event 1
 it2=incd[1][3] #iterations event 2
+########################################################################################################
 
+#######SIMULATION#######################################################################################
 jj=0
 SUM=[]
 while jj<n:
-	
-	if total==True:
-		states=[INCD[jj]]
-	else:
-		states=[incd[0]]
-	
-	ii=0
-	while ii<it:
+	nn=0
+	while nn<N:
+		if total==True:
+			states=[INCD[jj]]
+		else:
+			states=[incd[0]]
+		
+		ii=0
+		while ii<it:
 
-		state=states[-1]
-		lstate=[]
-		if ii>0:
-			lstate=states[-2]
+			state=states[-1]
+			lstate=[]
+			if ii>0:
+				lstate=states[-2]
+			
+			image=mod.im(state)		
+			
+			cb=sym.cb(image,state,lstate)
 		
-		image=mod.im(state)		
-		
-		cb=sym.cb(image,state,lstate)
-	
-		BREAK=cb[0]
-		steady=cb[1]
-		newstate=cb[2]
-		
-		if BREAK==True:
-			break
+			BREAK=cb[0]
+			steady=cb[1]
+			newstate=cb[2]
+			
+			if BREAK==True:
+				break
 
-		elif steady==False:
-			
-			L=sym.selup(state,image,d)
-			r=sym.rupdate(L)
-			newstate=sym.update(image,state,r,d)
-			
-		states.append(newstate)		
-		ii+=1
+			elif steady==False:
+				
+				L=sym.selup(state,image,d)
+				r=sym.rupdate(L)
+				newstate=sym.update(image,state,r,d)
+				
+			states.append(newstate)		
+			ii+=1
+		nn+=1
 	states=np.stack(states)
 	#summieren aller simulationen
 	SUM.append(states)
@@ -86,7 +92,7 @@ pIKK=np.array(P[6])
 pAr=np.array(P[7])
 pA=np.array(P[8])
 pc=np.array(P[9])
-
+###########################################################################################
 
 
 #######EVENT###############################################################################
