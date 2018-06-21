@@ -12,7 +12,7 @@ from plot1 import figa,figb
 d=mod.d
 total='True'#input('simulate all? ')
 event=1#int(input('how many events? '))
-incd=init.init('all0','atest')#(input('init. cond.: '),input('sim. cond.: '))
+incd=init.init('all','atest')#(input('init. cond.: '),input('sim. cond.: '))
 
 if total=='True':
 	total=True
