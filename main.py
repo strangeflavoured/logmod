@@ -79,10 +79,10 @@ pc=np.array(P[9])
 #######EVENT###############################################################################
 jj=0
 SUMe=[]
+incde=np.array(e1(SUM,jj))
 while jj<n:
-
-	incd=np.array(e1(SUM,jj))
-	states=[incd]
+	
+	states=[incde]
 	
 	ii=0
 	while ii<ite:
@@ -94,15 +94,20 @@ while jj<n:
 		
 		image=mod.im(state)		
 		
-		sym.cb(image,state,lstate)
+		cb=sym.cb(image,state,lstate)
+	
+		BREAK=cb[0]
+		steady=cb[1]
+		newstate=cb[2]
+
 		if BREAK==True:
 			break
 		
 		if steady==False:
 			
-			sym.selup(state,image,d)
-			sym.rupdate(L)
-			sym.update(image,state,r,d)
+			L=sym.selup(state,image,d)
+			r=sym.rupdate(L)
+			newstate=sym.update(image,state,r,d)
 			
 		states.append(newstate)		
 		ii+=1
@@ -170,10 +175,10 @@ fig1.suptitle('time development - wt0')
 wdth=np.amax(pt)
 wstep=int(wdth/10)
 
-ps.plotax(ax1,wdth,wstep)
-ps.plotax(ax2,wdth,wstep)
-ps.plotax(ax3,wdth,wstep)
-ps.plotax(ax4,wdth,wstep)
+ps.plotax(ax1,wdth,wstep,pt)
+ps.plotax(ax2,wdth,wstep,pt)
+ps.plotax(ax3,wdth,wstep,pt)
+ps.plotax(ax4,wdth,wstep,pt)
 
 fig1.tight_layout()
 plt.show()
@@ -221,10 +226,10 @@ fig1.suptitle('time development - activation')
 wdth=np.amax(pte)
 wstep=int(wdth/10)
 
-ps.plotax(ax5,wdth,wstep)
-ps.plotax(ax6,wdth,wstep)
-ps.plotax(ax7,wdth,wstep)
-ps.plotax(ax8,wdth,wstep)
+ps.plotax(ax1,wdth,wstep,pte)
+ps.plotax(ax2,wdth,wstep,pte)
+ps.plotax(ax3,wdth,wstep,pte)
+ps.plotax(ax4,wdth,wstep,pte)
 
 fig2.tight_layout()
 plt.show()

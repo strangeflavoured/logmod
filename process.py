@@ -48,16 +48,9 @@ def mearr(a,d,n,w):
 	return P
 
 def fuse(a,b,n):	
-	eSUM=[]
+	A=[]
 	for i in range(0,n):
-		a=np.concatenate((a[i],b[i]))
-		eSUM.append(a)
-	eSUM=np.stack(eSUM)
+		B=np.vstack((a[i],b[i]))
+		A.append(B)
+	eSUM=np.stack(A)
 	return eSUM
-
-def save(fig):
-	save=str(input('save as: '))
-	if save not in ('0', 'NO', 'no', 'No', 'nein', 'NEIN', 'Nein','n', 'N', '', ' ','q', 'Q','quit', 'Quit'):
-		fig.savefig(save, dpi=500)#fullscreen
-		s=save+'small'
-		fig.savefig(s, dpi=150)

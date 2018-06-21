@@ -1,4 +1,7 @@
-def plotax(a,b,c):
+import numpy as np
+import matplotlib.pyplot as plt
+
+def plotax(a,b,c,pt):
 	a.set_xlabel('time t')
 	a.set_xlim(0, np.max(pt))
 	a.set_ylabel('mean level')
@@ -29,4 +32,10 @@ def plotIn(a,b,c):
 
 def plotA(a,b,c):
 	a.plot(b, c, linewidth=1.5, c='y')
-	
+
+def save(fig):
+	save=str(input('save as: '))
+	if save not in ('0', 'NO', 'no', 'No', 'nein', 'NEIN', 'Nein','n', 'N', '', ' ','q', 'Q','quit', 'Quit'):
+		fig.savefig(save, dpi=500)#fullscreen
+		s=save+'small'
+		fig.savefig(s, dpi=150)
