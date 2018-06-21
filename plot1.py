@@ -2,10 +2,8 @@ import plotset as ps
 import matplotlib.pyplot as plt
 import numpy as np
 
-#PLOTTING###################################################################################
-plt.style.use('seaborn-dark')
-
 def figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample):
+	plt.style.use('seaborn-dark')
 	######FIGURE#########################################################################
 	fig1, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2)
 	#####AXES######################################################################
@@ -54,6 +52,7 @@ def figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample):
 	plt.close()
 
 def figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample):
+	plt.style.use('seaborn-dark')
 	######FIGURE##########################################################################
 	fig2, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2)
 	######AXES######################################################################
