@@ -104,42 +104,46 @@ if event>0:
 		SUMe=[]		
 		while jj<n:
 
-			if ee==1:
-				incde=np.array(e1(SUM,jj))
-			elif ee==2:
-				incde=np.array(e2(SUM,jj))
+			nn=0
+			while nn<N:
 
-			ii=0
-			states=[incde]
-			while ii<ite:
+				if ee==1:
+					incde=np.array(e1(SUM,jj))
+				elif ee==2:
+					incde=np.array(e2(SUM,jj))
 
-				state=states[-1]
-				lstate=[]
-				if ii>0:
-					lstate=states[-2]
-				
-				image=mod.im(state)		
-				
-				cb=sym.cb(image,state,lstate)
-			
-				BREAK=cb[0]
-				steady=cb[1]
-				newstate=cb[2]
-			
-				if BREAK==True:
-					break
-				
-				if steady==False:
+				ii=0
+				states=[incde]
+				while ii<ite:
+
+					state=states[-1]
+					lstate=[]
+					if ii>0:
+						lstate=states[-2]
 					
-					L=sym.selup(state,image,d)
-					r=sym.rupdate(L)
-					newstate=sym.update(image,state,r,d)
+					image=mod.im(state)		
 					
-				states.append(newstate)		
-				ii+=1
-			states=np.stack(states)#[ii,...]
-			#summieren aller simulationen
-			SUMe.append(states)
+					cb=sym.cb(image,state,lstate)
+				
+					BREAK=cb[0]
+					steady=cb[1]
+					newstate=cb[2]
+				
+					if BREAK==True:
+						break
+					
+					if steady==False:
+						
+						L=sym.selup(state,image,d)
+						r=sym.rupdate(L)
+						newstate=sym.update(image,state,r,d)
+						
+					states.append(newstate)		
+					ii+=1
+				states=np.stack(states)#[ii,...]
+				#summieren aller simulationen
+				SUMe.append(states)
+				nn+=1
 			jj+=1	
 		SUMe=np.stack(SUMe)#[[ii,...]jj,...]
 		SUMMe=prc.fuse(SUMMe,SUMe,n)
