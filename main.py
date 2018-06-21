@@ -5,13 +5,22 @@ import modell as mod
 import initial as init
 import sym 
 import process as prc
-from event import e1
+from event import e1,e2
 
 d=mod.d
+total='no'#input('simulate all? ')
+event=2#int(input('how many events? '))
 #INITIAL CONDITIONS, SIMULATION SETTINGS#################################################################
-incd=init.init('wt0','test')#(input('init. cond.: '),input('sim. cond.: '))
+incd=init.init('wt0','normal')#(input('init. cond.: '),input('sim. cond.: '))
 
-n=incd[1][0]
+if total=='True':
+	total=True
+	INCD=incd[0]
+	n=incd[0].shape[0]*incd[1][0]
+	event=0
+else:		
+	n=incd[1][0]
+	
 sample='n=%s' %n
 it=incd[1][1]#iterations pre-event
 ite=incd[1][2] #iterations event 1
@@ -77,62 +86,72 @@ pc=np.array(P[9])
 
 
 #######EVENT###############################################################################
-jj=0
-SUMe=[]
-incde=np.array(e1(SUM,jj))
-while jj<n:
-	
-	states=[incde]
-	
-	ii=0
-	while ii<ite:
+if event>0:
+	ee=1
+	SUMMe=SUM
+	while ee<=event:
+		jj=0
+		SUMe=[]		
+		while jj<n:
 
-		state=states[-1]
-		lstate=[]
-		if ii>0:
-			lstate=states[-2]
-		
-		image=mod.im(state)		
-		
-		cb=sym.cb(image,state,lstate)
-	
-		BREAK=cb[0]
-		steady=cb[1]
-		newstate=cb[2]
+			if ee==1:
+				incde=np.array(e1(SUM,jj))
+			elif ee==2:
+				incde=np.array(e2(SUM,jj))
 
-		if BREAK==True:
-			break
-		
-		if steady==False:
+			ii=0
+			states=[incde]
+			while ii<ite:
+
+				state=states[-1]
+				lstate=[]
+				if ii>0:
+					lstate=states[-2]
+				
+				image=mod.im(state)		
+				
+				cb=sym.cb(image,state,lstate)
 			
-			L=sym.selup(state,image,d)
-			r=sym.rupdate(L)
-			newstate=sym.update(image,state,r,d)
+				BREAK=cb[0]
+				steady=cb[1]
+				newstate=cb[2]
+
 			
-		states.append(newstate)		
-		ii+=1
-	states=np.stack(states)
-	#summieren aller simulationen
-	SUMe.append(states)
-	jj+=1	
-SUMe=np.stack(SUMe)
+				if BREAK==True:
+					break
+				
+				if steady==False:
+					
+					L=sym.selup(state,image,d)
+					r=sym.rupdate(L)
+					newstate=sym.update(image,state,r,d)
+					
+				states.append(newstate)		
+				ii+=1
+			states=np.stack(states)#[ii,...]
+			#summieren aller simulationen
+			SUMe.append(states)
+			jj+=1	
+		SUMe=np.stack(SUMe)#[[ii,...]jj,...]
+		SUMMe=prc.fuse(SUMMe,SUMe,n)
+		ee+=1
+		
+	eSUM=prc.fuse(SUM,SUMMe,n)
 
-eSUM=prc.fuse(SUM,SUMe,n)
+	we=len(eSUM[0])
+	pte=prc.time(we)
+	Pe=prc.mearr(eSUM,d,n,we)
 
-we=len(eSUM[0])
-pte=prc.time(we)
-Pe=prc.mearr(eSUM,d,n,we)
-
-pSe=np.array(Pe[0])
-pNce=np.array(Pe[1])
-pNne=np.array(Pe[2])
-pIce=np.array(Pe[3])
-pIne=np.array(Pe[4])
-pIre=np.array(Pe[5])
-pIKKe=np.array(Pe[6])
-pAre=np.array(Pe[7])
-pAe=np.array(Pe[8])
-pce=np.array(Pe[9])
+	pSe=np.array(Pe[0])
+	pNce=np.array(Pe[1])
+	pNne=np.array(Pe[2])
+	pIce=np.array(Pe[3])
+	pIne=np.array(Pe[4])
+	pIre=np.array(Pe[5])
+	pIKKe=np.array(Pe[6])
+	pAre=np.array(Pe[7])
+	pAe=np.array(Pe[8])
+	pce=np.array(Pe[9])
 ############################################################################################
 
 
@@ -182,7 +201,7 @@ ps.plotax(ax4,wdth,wstep,pt)
 
 fig1.tight_layout()
 plt.show()
-ps.save(fig1)
+#ps.save(fig1)
 plt.close()
 
 ######FIGURE##########################################################################
@@ -233,5 +252,5 @@ ps.plotax(ax4,wdth,wstep,pte)
 
 fig2.tight_layout()
 plt.show()
-ps.save(fig2)
+#ps.save(fig2)
 plt.close()
