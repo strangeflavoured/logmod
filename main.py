@@ -12,7 +12,7 @@ from plot1 import figa,figb,phaseplot1,phaseplot2
 d=mod.d
 
 event=1#int(input('how many events? '))
-ina='all0'#input('init. cond.: ')
+ina='all'#input('init. cond.: ')
 inb='anormal'#input('sim. cond.: ')
 
 incd=init.init(ina,inb)
