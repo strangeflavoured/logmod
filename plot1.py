@@ -97,4 +97,19 @@ def phaseplot1(x,namex,y,namey,w):
 	plt.show()
 	#ps.save(fig)
 	plt.close()
-	############################################################################## 
+	##############################################################################
+
+def phaseplot2(x,namex,y,namey,w,probe):
+	plt.style.use('seaborn-dark')
+	######FIGURE##########################################################################
+	fig, ax = plt.subplots(nrows=1, ncols=1)
+
+	ps.phasefull(ax,x, y, w, cm.YlGnBu_r,probe)
+
+	ps.phaseax(ax, namex, namey)
+
+	fig.tight_layout()
+	plt.show()
+	#ps.save(fig)
+	plt.close()
+	##############################################################################

@@ -6,17 +6,18 @@ import initial as init
 import sym 
 import process as prc
 from event import e1,e2
-from plot1 import figa,figb,phaseplot1
+from plot1 import figa,figb,phaseplot1,phaseplot2
 
 #######INITIATION#######################################################################################
 d=mod.d
 
 event=1#int(input('how many events? '))
 ina='all0'#input('init. cond.: ')
-inb='atest'#input('sim. cond.: ')
+inb='anormal'#input('sim. cond.: ')
 
 incd=init.init(ina,inb)
 
+total=False
 if ina in ('all','all0','all1'):
 	total=True
 
@@ -30,7 +31,7 @@ else:
 	N=1
 	
 probe=n*N	
-sample='n=%s' %probe
+sample='n=%s*%s' %(n,N)
 it=incd[1][1]#iterations pre-event
 ite=incd[1][2] #iterations event 1
 it2=incd[1][3] #iterations event 2
@@ -84,7 +85,7 @@ w=prc.length(SUM,n)
 pt=prc.time(w)
 SUM=prc.fill(SUM,w,n)
 
-SUM=np.stack(SUM)
+SUM=np.stack(SUM)#shape=(n,w,d)
 
 P=prc.mearr(SUM,d,n,w)
 
@@ -153,8 +154,7 @@ if event>0:
 			jj+=1	
 		SUMe=np.stack(SUMe)#[[ii,...]jj,...]
 		ee+=1
-		eSUM=prc.fuse(eSUM,SUMe,n)
-	
+		eSUM=prc.fuse(eSUM,SUMe,n)#shape=(n,w,d)	
 	we=len(eSUM[0])
 	pte=prc.time(we)
 	Pe=prc.mearr(eSUM,d,n,we)
@@ -170,9 +170,9 @@ if event>0:
 	pAe=np.array(Pe[8])
 	pce=np.array(Pe[9])
 ############################################################################################
-
 figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample)
 phaseplot1(pNn,'Nn',pIc,'Ic',w)
+#phaseplot2(SUM[:,:,2], 'Nn',SUM[:,:,3],'Ic',w,probe)
 
 if event>0:
 	figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample)

@@ -78,7 +78,13 @@ def phaseplot(a,x,y,w,colourmap):
 	a.plot(x,y, '-', linewidth=1)
 	for col in range(0,w):
 		a.plot(x[col],y[col], 'o', c=colour[col])
-	
+
+def phasefull(a,x,y,w,colourmap,probe):
+	colour=colourmap(np.linspace(0, 1, w))
+	for i in range(0,probe):
+		a.plot(x[i],y[i], '-', linewidth=1)
+		for col in range(0,w):
+			a.plot(x[:,col],y[:,col], 'o', c=colour[col])	
 
 def save(fig):
 	save=str(input('save as: '))
