@@ -26,3 +26,7 @@ pIKKe=np.array(Pe[6])
 pAre=np.array(Pe[7])
 pAe=np.array(Pe[8])
 pce=np.array(Pe[9])
+
+################################
+#####replot, get values etc#####
+################################

@@ -10,9 +10,9 @@ from plot1 import figa,figb,phaseplot1,phaseplot2
 #######INITIATION#######################################################################################
 d=mod.d
 
-event=1#int(input('how many events? '))
-ina='wt0'#input('init. cond.: ')
-inb='test'#input('sim. cond.: ')
+ina=input('init. cond.: ')
+inb=input('sim. cond.: ')
+event=int(input('how many events? '))
 
 incd=init.init(ina,inb)
 
@@ -169,12 +169,13 @@ pAre=np.array(Pe[7])
 pAe=np.array(Pe[8])
 pce=np.array(Pe[9])
 ############################################################################################
-#figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample)
-#phaseplot1(pNn,'Nn',pIc,'Ic',w)
+figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample)
+phaseplot1(pNn,'Nn',pIc,'Ic',w)
 #phaseplot1(pNne,'Nn',pIce,'Ic',w)
 #phaseplot2(SUM[:,:,2], 'Nn',SUM[:,:,3],'Ic',w,probe)
 
-#if event>0:
-#	figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample)
+if event>0:
+	figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample)
+	
 prc.saveres(d,event,ina,inb,w,probe,sample,pt,SUM,P,pte,eSUM,Pe)
 #############################################################################################
