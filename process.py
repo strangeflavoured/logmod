@@ -1,4 +1,7 @@
 import numpy as np
+import datetime
+import _pickle as pickle
+
 def length(a,b):
 	length=[]
 	for i in range(0,b):
@@ -54,3 +57,17 @@ def fuse(a,b,n):
 		A.append(B)
 	eSUM=np.stack(A)
 	return eSUM
+
+def saveres(d,event,ina,inb,w,probe,sample,pt,SUM,P,pte,eSUM,Pe):
+	fid=open('results.txt', 'a+')
+	fid.write('{}\r\n'.format(datetime.datetime.now()))
+	fid.write('d={}, event={}, ina={}, inb={} \r\n'.format(d,event,ina,inb))
+	fid.write('SUM:\r\n{}\r\n'.format(list(SUM)))
+	fid.write('P:\r\n{}\r\n'.format(list(P)))
+	fid.write('eSUM:\r\n{}\r\n'.format(list(eSUM)))
+	fid.write('Pe:\r\n{}\r\n\r\n'.format(list(Pe)))
+	fid.close()
+
+	fid=open('results.pkl', 'ab+')
+	pickle.dump([pt,SUM,P,pte,eSUM,Pe,w,probe,sample], fid)
+	fid.close()

@@ -1,6 +1,5 @@
 import numpy as np
-#import matplotlib.pyplot as plt
-#import plotset as ps 
+
 import modell as mod 
 import initial as init
 import sym 
@@ -12,8 +11,8 @@ from plot1 import figa,figb,phaseplot1,phaseplot2
 d=mod.d
 
 event=1#int(input('how many events? '))
-ina='all'#input('init. cond.: ')
-inb='anormal'#input('sim. cond.: ')
+ina='wt0'#input('init. cond.: ')
+inb='test'#input('sim. cond.: ')
 
 incd=init.init(ina,inb)
 
@@ -31,7 +30,7 @@ else:
 	N=1
 	
 probe=n*N	
-sample='n=%s*%s' %(n,N)
+sample='n={}*{}'.format(n,N)
 it=incd[1][1]#iterations pre-event
 ite=incd[1][2] #iterations event 1
 it2=incd[1][3] #iterations event 2
@@ -170,9 +169,12 @@ if event>0:
 	pAe=np.array(Pe[8])
 	pce=np.array(Pe[9])
 ############################################################################################
-figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample)
-phaseplot1(pNn,'Nn',pIc,'Ic',w)
+#figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample)
+#phaseplot1(pNn,'Nn',pIc,'Ic',w)
+#phaseplot1(pNne,'Nn',pIce,'Ic',w)
 #phaseplot2(SUM[:,:,2], 'Nn',SUM[:,:,3],'Ic',w,probe)
 
-if event>0:
-	figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample)
+#if event>0:
+#	figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample)
+prc.saveres(d,event,ina,inb,w,probe,sample,pt,SUM,P,pte,eSUM,Pe)
+#############################################################################################
