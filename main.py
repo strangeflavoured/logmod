@@ -102,9 +102,9 @@ pc=np.array(P[9])
 
 
 #######EVENT###############################################################################
+eSUM=SUM
 if event>0:
-	ee=1
-	eSUM=SUM
+	ee=1	
 	while ee<=event:
 		jj=0
 		SUMe=[]		
@@ -154,20 +154,20 @@ if event>0:
 		SUMe=np.stack(SUMe)#[[ii,...]jj,...]
 		ee+=1
 		eSUM=prc.fuse(eSUM,SUMe,n)#shape=(n,w,d)	
-	we=len(eSUM[0])
-	pte=prc.time(we)
-	Pe=prc.mearr(eSUM,d,n,we)
+we=len(eSUM[0])
+pte=prc.time(we)
+Pe=prc.mearr(eSUM,d,n,we)
 
-	pSe=np.array(Pe[0])
-	pNce=np.array(Pe[1])
-	pNne=np.array(Pe[2])
-	pIce=np.array(Pe[3])
-	pIne=np.array(Pe[4])
-	pIre=np.array(Pe[5])
-	pIKKe=np.array(Pe[6])
-	pAre=np.array(Pe[7])
-	pAe=np.array(Pe[8])
-	pce=np.array(Pe[9])
+pSe=np.array(Pe[0])
+pNce=np.array(Pe[1])
+pNne=np.array(Pe[2])
+pIce=np.array(Pe[3])
+pIne=np.array(Pe[4])
+pIre=np.array(Pe[5])
+pIKKe=np.array(Pe[6])
+pAre=np.array(Pe[7])
+pAe=np.array(Pe[8])
+pce=np.array(Pe[9])
 ############################################################################################
 #figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample)
 #phaseplot1(pNn,'Nn',pIc,'Ic',w)
