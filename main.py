@@ -6,23 +6,29 @@ import initial as init
 import sym 
 import process as prc
 from event import e1,e2
-from plot1 import figa,figb
+from plot1 import figa,figb,phaseplot1
 
 #######INITIATION#######################################################################################
 d=mod.d
-total='True'#input('simulate all? ')
-event=1#int(input('how many events? '))
-incd=init.init('all','atest')#(input('init. cond.: '),input('sim. cond.: '))
 
-if total=='True':
+event=1#int(input('how many events? '))
+ina='all0'#input('init. cond.: ')
+inb='atest'#input('sim. cond.: ')
+
+incd=init.init(ina,inb)
+
+if ina in ('all','all0','all1'):
 	total=True
+
+if total==True:	
 	INCD=incd[0]
 	n=INCD.shape[0]
-	N=10#incd[1][0]
-	event=0
+	N=incd[1][0]
+	event=1
 else:		
 	n=incd[1][0]
 	N=1
+	
 probe=n*N	
 sample='n=%s' %probe
 it=incd[1][1]#iterations pre-event
@@ -98,7 +104,7 @@ pc=np.array(P[9])
 #######EVENT###############################################################################
 if event>0:
 	ee=1
-	SUMMe=SUM
+	eSUM=SUM
 	while ee<=event:
 		jj=0
 		SUMe=[]		
@@ -146,11 +152,9 @@ if event>0:
 				nn+=1
 			jj+=1	
 		SUMe=np.stack(SUMe)#[[ii,...]jj,...]
-		SUMMe=prc.fuse(SUMMe,SUMe,n)
 		ee+=1
-		
-	eSUM=prc.fuse(SUM,SUMMe,n)
-
+		eSUM=prc.fuse(eSUM,SUMe,n)
+	
 	we=len(eSUM[0])
 	pte=prc.time(we)
 	Pe=prc.mearr(eSUM,d,n,we)
@@ -168,6 +172,7 @@ if event>0:
 ############################################################################################
 
 figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample)
+phaseplot1(pNn,'Nn',pIc,'Ic',w)
 
 if event>0:
 	figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample)

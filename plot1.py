@@ -1,5 +1,6 @@
 import plotset as ps 
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import numpy as np
 
 def figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample):
@@ -7,99 +8,93 @@ def figa(pt,pIKK,pNc,pNn,pIc,pIn,pA,sample):
 	######FIGURE#########################################################################
 	fig1, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2)
 	#####AXES######################################################################
-	ps.plotIKK(ax1,pt,pIKK)
-	ps.plotNc(ax2,pt,pNc)
-	ps.plotNn(ax2,pt,pNn)
-	ps.plotIc(ax3,pt,pIc)
-	ps.plotIn(ax3,pt,pIn)
-	ps.plotA(ax4,pt,pA)
+	likk=ps.plotIKK(ax1,pt,pIKK)
+	lsamp=ps.sample(ax1)
+	ax1.legend((likk,lsamp),('IKK',sample),loc='upper right')
+	
+	lnc=ps.plotNc(ax2,pt,pNc)
+	lnn=ps.plotNn(ax2,pt,pNn)
+	lsamp=ps.sample(ax2)
+	ax2.legend((lnc,lnn,lsamp),('Nc', 'Nn',sample),loc='upper right')
 
-	#####LEGEND####################################################################
-	handles, labels = ax1.get_legend_handles_labels()
-	l1 = plt.Line2D((0,1),(0,0), c='r', linewidth=1.5, linestyle='-')
-	l7 = plt.Line2D((0,1),(0,0), linewidth=1.5, linestyle='')
-	ax1.legend((l1,l7),('IKK',sample),loc='upper right')
+	lic=ps.plotIc(ax3,pt,pIc)
+	lin=ps.plotIn(ax3,pt,pIn)
+	lsamp=ps.sample(ax3)
+	ax3.legend((lic,lin,lsamp),('Ic','In',sample),loc='lower right')
 
-	handles, labels = ax2.get_legend_handles_labels()
-	l2 = plt.Line2D((0,1),(0,0), c='g', linewidth=1.5, linestyle='-')
-	l3 = plt.Line2D((0,1),(0,0), c='b', linewidth=1.5, linestyle='-')
-	l7 = plt.Line2D((0,1),(0,0), linewidth=1.5, linestyle='')
-	ax2.legend((l2,l3,l7),('Nc', 'Nn',sample),loc='upper right')
-
-	handles, labels = ax3.get_legend_handles_labels()
-	l4 = plt.Line2D((0,1),(0,0), c='m', linewidth=1.5, linestyle='-')
-	l5 = plt.Line2D((0,1),(0,0), c='k', linewidth=1.5, linestyle='-')
-	l7 = plt.Line2D((0,1),(0,0), linewidth=1.5, linestyle='')
-	ax3.legend((l4,l5,l7),('Ic','In',sample),loc='lower right')
-
-	handles, labels = ax4.get_legend_handles_labels()
-	l6 = plt.Line2D((0,1),(0,0), c='y', linewidth=1.5, linestyle='-')
-	l7 = plt.Line2D((0,1),(0,0), linewidth=1.5, linestyle='')
-	ax4.legend((l6,l7),('A',sample),loc='upper right')
-
+	la=ps.plotA(ax4,pt,pA)
+	lsamp=ps.sample(ax4)
+	ax4.legend((la,lsamp),('A',sample),loc='upper right')
+	
+	####ENVIRONMENT###############################################################
 	fig1.suptitle('time development - wt0')
 	wdth=np.amax(pt)
 	wstep=int(wdth/10)
 
-	ps.plotax(ax1,wdth,wstep,pt)
-	ps.plotax(ax2,wdth,wstep,pt)
-	ps.plotax(ax3,wdth,wstep,pt)
-	ps.plotax(ax4,wdth,wstep,pt)
+	ps.meanax(ax1,wdth,wstep,pt)
+	ps.meanax(ax2,wdth,wstep,pt)
+	ps.meanax(ax3,wdth,wstep,pt)
+	ps.meanax(ax4,wdth,wstep,pt)
 
 	fig1.tight_layout()
 	plt.show()
 	#ps.save(fig1)
 	plt.close()
+	############################################################################## 
 
 def figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample):
 	plt.style.use('seaborn-dark')
 	######FIGURE##########################################################################
 	fig2, ((ax1, ax2), (ax3, ax4)) = plt.subplots(nrows=2, ncols=2)
 	######AXES######################################################################
-	ps.plotIKK(ax1,pte,pIKKe)
-	ps.plotS(ax1,pte,pSe)
-	ps.plotNn(ax2,pte,pNne)
-	ps.plotS(ax2,pte,pSe)
-	ps.plotIc(ax3,pte,pIce)
-	ps.plotS(ax3,pte,pSe)
-	ps.plotA(ax4,pte,pAe)
-	ps.plotS(ax4,pte,pSe)
+	likk=ps.plotIKK(ax1,pte,pIKKe)
+	ls=ps.plotS(ax1,pte,pSe)
+	lsamp=ps.sample(ax1)
+	ax1.legend((likk,ls,lsamp),('IKK','S',sample),loc='upper left')
 
-	#####LEGEND#####################################################################
-	handles, labels = ax1.get_legend_handles_labels()
-	l1 = plt.Line2D((0,1),(0,0), c='r', linewidth=1.5, linestyle='-')
-	l8=plt.Line2D((0,1),(0,0), c='g', linewidth=2, linestyle='-')
-	l7 = plt.Line2D((0,1),(0,0), linewidth=1.5, linestyle='')
-	ax1.legend((l1,l8,l7),('IKK','S',sample),loc='upper left')
+	lnn=ps.plotNn(ax2,pte,pNne)
+	ls=ps.plotS(ax2,pte,pSe)
+	lsamp=ps.sample(ax1)
+	ax2.legend((lnn,ls,lsamp),( 'Nn','S',sample),loc='upper left')
 
-	handles, labels = ax2.get_legend_handles_labels()
-	l3 = plt.Line2D((0,1),(0,0), c='b', linewidth=1.5, linestyle='-')
-	l8=plt.Line2D((0,1),(0,0), c='g', linewidth=2, linestyle='-')
-	l7 = plt.Line2D((0,1),(0,0), linewidth=1.5, linestyle='')
-	ax2.legend((l3,l8,l7),( 'Nn','S',sample),loc='upper left')
+	lic=ps.plotIc(ax3,pte,pIce)
+	ls=ps.plotS(ax3,pte,pSe)
+	lsamp=ps.sample(ax1)
+	ax3.legend((lic,ls,lsamp),('Ic','S',sample),loc='upper left')
 
-	handles, labels = ax3.get_legend_handles_labels()
-	l4 = plt.Line2D((0,1),(0,0), c='m', linewidth=1.5, linestyle='-')
-	l8=plt.Line2D((0,1),(0,0), c='g', linewidth=2, linestyle='-')
-	l7 = plt.Line2D((0,1),(0,0), linewidth=1.5, linestyle='')
-	ax3.legend((l4,l8,l7),('Ic','S',sample),loc='upper left')
+	la=ps.plotA(ax4,pte,pAe)
+	ls=ps.plotS(ax4,pte,pSe)
+	lsamp=ps.sample(ax1)
+	ax4.legend((la,ls,lsamp),('A','S',sample),loc='upper left')
 
-	handles, labels = ax4.get_legend_handles_labels()
-	l6 = plt.Line2D((0,1),(0,0), c='y', linewidth=1.5, linestyle='-')
-	l8=plt.Line2D((0,1),(0,0), c='g', linewidth=2, linestyle='-')
-	l7 = plt.Line2D((0,1),(0,0), linewidth=1.5, linestyle='')
-	ax4.legend((l6,l8,l7),('A','S',sample),loc='upper left')
-
+	
+	####ENVIRONMENT###############################################################
 	fig2.suptitle('time development - activation')
 	wdth=np.amax(pte)
 	wstep=int(wdth/10)
 
-	ps.plotax(ax1,wdth,wstep,pte)
-	ps.plotax(ax2,wdth,wstep,pte)
-	ps.plotax(ax3,wdth,wstep,pte)
-	ps.plotax(ax4,wdth,wstep,pte)
+	ps.meanax(ax1,wdth,wstep,pte)
+	ps.meanax(ax2,wdth,wstep,pte)
+	ps.meanax(ax3,wdth,wstep,pte)
+	ps.meanax(ax4,wdth,wstep,pte)
 
 	fig2.tight_layout()
 	plt.show()
 	#ps.save(fig2)
 	plt.close()
+	############################################################################## 
+
+def phaseplot1(x,namex,y,namey,w):
+	plt.style.use('seaborn-dark')
+	######FIGURE##########################################################################
+	fig, ax = plt.subplots(nrows=1, ncols=1)
+
+	ps.phaseplot(ax,x, y, w, cm.YlGnBu_r)
+
+	ps.phaseax(ax, namex, namey)
+
+	fig.tight_layout()
+	plt.show()
+	#ps.save(fig)
+	plt.close()
+	############################################################################## 

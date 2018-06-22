@@ -1,3 +1,5 @@
+#initial conditions associated with modell.py
+
 import itertools
 import numpy as np
 
