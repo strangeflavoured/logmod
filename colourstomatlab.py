@@ -1,4 +1,4 @@
-arg=input('name to rgb: ')
+arg=input('name : ')
 colour={'orchid':[218, 214, 112],'violet':[238, 130, 238],'g':[0, 128, 0],'lime':[0, 255, 0], 'r':[255, 0, 0], 
 'tomato':[255, 99, 71],'purple':[128, 0, 128], 'darkviolet':[148, 0, 211],'royalblue':[65, 105, 225],
 'deepskyblue':[0, 191, 255],'navy':[0, 0, 128], 'b':[0,0,255],'y':[255, 255, 0], 'orange':[255, 165, 0],
