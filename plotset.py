@@ -68,9 +68,9 @@ def plotIn(a,b,c):
 	return lin
 
 def plotA(a,b,c):
-	a.plot(b, c, linewidth=1.5, c='y')
+	a.plot(b, c, linewidth=1.5, c='darkorange')
 	handles, labels = a.get_legend_handles_labels()
-	la = plt.Line2D((0,1),(0,0), c='y', linewidth=1.5, linestyle='-')
+	la = plt.Line2D((0,1),(0,0), c='darkorange', linewidth=1.5, linestyle='-')
 	return la
 
 def phaseplot(a,x,y,w,colourmap):
