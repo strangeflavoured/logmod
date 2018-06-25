@@ -176,6 +176,6 @@ phaseplot1(pNn,'Nn',pIc,'Ic',w)
 
 if event>0:
 	figb(pte,pSe,pIKKe,pNne,pIce,pAe,sample)
-	
+
 prc.saveres(d,event,ina,inb,w,probe,sample,pt,SUM,P,pte,eSUM,Pe)
 #############################################################################################

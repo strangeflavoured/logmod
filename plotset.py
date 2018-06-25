@@ -44,27 +44,27 @@ def plotIKK(a,b,c):
 	return likk
 
 def plotNc(a,b,c):
-	a.plot(b, c, linewidth=1.5, c='g')
+	a.plot(b, c, linewidth=1.5, c='royalblue')
 	handles, labels = a.get_legend_handles_labels()
-	lnc = plt.Line2D((0,1),(0,0), c='g', linewidth=1.5, linestyle='-')
+	lnc = plt.Line2D((0,1),(0,0), c='royalblue', linewidth=1.5, linestyle='-')
 	return lnc
 
 def plotNn(a,b,c):
-	a.plot(b, c, linewidth=1.5, c='b')
+	a.plot(b, c, linewidth=1.5, c='navy')
 	handles, labels = a.get_legend_handles_labels()
-	lnn = plt.Line2D((0,1),(0,0), c='b', linewidth=1.5, linestyle='-')
+	lnn = plt.Line2D((0,1),(0,0), c='navy', linewidth=1.5, linestyle='-')
 	return lnn
 
 def plotIc(a,b,c):
-	a.plot(b, c, linewidth=1.5, c='m')
+	a.plot(b, c, linewidth=1.5, c='purple')
 	handles, labels = a.get_legend_handles_labels()
-	lic = plt.Line2D((0,1),(0,0), c='m', linewidth=1.5, linestyle='-')
+	lic = plt.Line2D((0,1),(0,0), c='purple', linewidth=1.5, linestyle='-')
 	return lic
 
 def plotIn(a,b,c):
-	a.plot(b, c, linewidth=1.5, c='k')
+	a.plot(b, c, linewidth=1.5, c='orchid')
 	handles, labels = a.get_legend_handles_labels()
-	lin = plt.Line2D((0,1),(0,0), c='k', linewidth=1.5, linestyle='-')
+	lin = plt.Line2D((0,1),(0,0), c='orchid', linewidth=1.5, linestyle='-')
 	return lin
 
 def plotA(a,b,c):
