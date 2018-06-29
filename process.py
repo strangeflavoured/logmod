@@ -59,7 +59,7 @@ def fuse(a,b,n):
 	return eSUM
 
 def saveres(d,event,ina,inb,w,probe,sample,pt,SUM,P,pte,eSUM,Pe):
-	fid=open('results.txt', 'a+')
+	fid=open('../results.txt', 'a+')
 	fid.write('{}\r\n'.format(datetime.datetime.now()))
 	fid.write('d={}, event={}, ina={}, inb={} \r\n'.format(d,event,ina,inb))
 	fid.write('SUM:\r\n{}\r\n'.format(list(SUM)))
@@ -68,6 +68,6 @@ def saveres(d,event,ina,inb,w,probe,sample,pt,SUM,P,pte,eSUM,Pe):
 	fid.write('Pe:\r\n{}\r\n\r\n'.format(list(Pe)))
 	fid.close()
 
-	fid=open('results.pkl', 'ab+')
+	fid=open('../results.pkl', 'ab+')
 	pickle.dump([pt,SUM,P,pte,eSUM,Pe,w,probe,sample], fid)
 	fid.close()

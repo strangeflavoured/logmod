@@ -1,7 +1,7 @@
 import _pickle as pickle
 import numpy as numpy
 
-f=open('results.pkl','rb')
+f=open('../results.pkl','rb')
 pt,SUM,P,pte,eSUM,Pe,w,probe,sample=pickle.load(f)
 f.close()
 

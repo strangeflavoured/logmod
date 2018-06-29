@@ -88,6 +88,7 @@ def phasefull(a,x,y,w,colourmap,probe):
 
 def save(fig):
 	save=str(input('save as: '))
+	save='../'+save
 	if save not in ('0', 'NO', 'no', 'No', 'nein', 'NEIN', 'Nein','n', 'N', '', ' ','q', 'Q','quit', 'Quit'):
 		fig.savefig(save, dpi=500)#fullscreen
 		s=save+'small'
