@@ -13,5 +13,3 @@ for i in range(0,3):
 	rgb[i]=colour[arg][i]/255
 print('rgb: ',rgb)
 print('RGB: ',colour[arg])
-
-
