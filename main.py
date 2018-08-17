@@ -89,10 +89,22 @@ SUM=np.stack(SUM)#shape=(n,w,d)
 P=prc.mearr(SUM,d,n,w)
 
 pS=np.array(P[0])
+<<<<<<< HEAD
 pN=np.array(P[1])
 pI=np.array(P[2])
 pK=np.array(P[3]+P[4])
 pA=np.array(P[5])
+=======
+pNc=np.array(P[1])
+pNn=np.array(P[2])
+pIc=np.array(P[3])
+pIn=np.array(P[4])
+pIr=np.array(P[5])
+pIKK=np.array(P[6])
+pAr=np.array(P[7])
+pA=np.array(P[8])
+pc=np.array(P[9])
+>>>>>>> cfa72ea850d2ebfbd1c0c14bc8d61fe5639dc18d
 ###########################################################################################
 
 

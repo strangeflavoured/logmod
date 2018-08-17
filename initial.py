@@ -3,12 +3,21 @@
 import itertools
 import numpy as np
 
+<<<<<<< HEAD
 All=np.array(list(itertools.product([0,1], repeat=6)))
 all0=np.insert(np.array(list(itertools.product([0,1], repeat=5))),0,0,axis=1)
 all1=np.insert(np.array(list(itertools.product([0,1], repeat=5))),0,1,axis=1)
 
 #initial conditions
 AB={'wt0':[0,1,0,0,0,0], 'wt1':[1,0,1,0,0,0],'all':All,'all0':all0,'all1':all1}
+=======
+All=np.array(list(itertools.product([0,1], repeat=10)))
+all0=np.insert(np.array(list(itertools.product([0,1], repeat=9))),0,0,axis=1)
+all1=np.insert(np.array(list(itertools.product([0,1], repeat=9))),0,1,axis=1)
+
+#initial conditions
+AB={'wt0':[0,0,0,0,0,0,0,0,0,0], 'wt1':[1,0,0,1,1,0,0,0,0,0],'all':All,'all0':all0,'all1':all1}
+>>>>>>> cfa72ea850d2ebfbd1c0c14bc8d61fe5639dc18d
 
 #number, iterations
 
